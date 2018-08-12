@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kidletime
-Version  : 5.48.0
-Release  : 1
-URL      : https://download.kde.org/stable/frameworks/5.48/kidletime-5.48.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.48/kidletime-5.48.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.48/kidletime-5.48.0.tar.xz.sig
+Version  : 5.49.0
+Release  : 2
+URL      : https://download.kde.org/stable/frameworks/5.49/kidletime-5.49.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.49/kidletime-5.49.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.49/kidletime-5.49.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -17,6 +17,8 @@ Requires: kidletime-lib
 Requires: kidletime-license
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
+BuildRequires : qtbase-dev qtbase-extras mesa-dev
 
 %description
 # KIdleTime
@@ -54,14 +56,14 @@ license components for the kidletime package.
 
 
 %prep
-%setup -q -n kidletime-5.48.0
+%setup -q -n kidletime-5.49.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1531925335
+export SOURCE_DATE_EPOCH=1534097788
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -69,7 +71,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1531925335
+export SOURCE_DATE_EPOCH=1534097788
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/kidletime
 cp COPYING %{buildroot}/usr/share/doc/kidletime/COPYING
@@ -98,8 +100,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5IdleTime.so.5
-/usr/lib64/libKF5IdleTime.so.5.48.0
+/usr/lib64/libKF5IdleTime.so.5.49.0
 /usr/lib64/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin0.so
+/usr/lib64/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin1.so
 
 %files license
 %defattr(-,root,root,-)
