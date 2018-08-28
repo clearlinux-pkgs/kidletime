@@ -6,7 +6,7 @@
 #
 Name     : kidletime
 Version  : 5.49.0
-Release  : 2
+Release  : 3
 URL      : https://download.kde.org/stable/frameworks/5.49/kidletime-5.49.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.49/kidletime-5.49.0.tar.xz
 Source99 : https://download.kde.org/stable/frameworks/5.49/kidletime-5.49.0.tar.xz.sig
@@ -15,10 +15,12 @@ Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: kidletime-lib
 Requires: kidletime-license
+Requires: kidletime-data
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
 BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtx11extras-dev
 
 %description
 # KIdleTime
@@ -28,10 +30,19 @@ KIdleTime is a singleton reporting information on idle time. It is useful not
 only for finding out about the current idle time of the PC, but also for getting
 notified upon idle time events, such as custom timeouts, or user activity.
 
+%package data
+Summary: data components for the kidletime package.
+Group: Data
+
+%description data
+data components for the kidletime package.
+
+
 %package dev
 Summary: dev components for the kidletime package.
 Group: Development
 Requires: kidletime-lib
+Requires: kidletime-data
 Provides: kidletime-devel
 
 %description dev
@@ -41,6 +52,7 @@ dev components for the kidletime package.
 %package lib
 Summary: lib components for the kidletime package.
 Group: Libraries
+Requires: kidletime-data
 Requires: kidletime-license
 
 %description lib
@@ -63,7 +75,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1534097788
+export SOURCE_DATE_EPOCH=1535429481
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -71,7 +83,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1534097788
+export SOURCE_DATE_EPOCH=1535429481
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/kidletime
 cp COPYING %{buildroot}/usr/share/doc/kidletime/COPYING
@@ -82,6 +94,10 @@ popd
 
 %files
 %defattr(-,root,root,-)
+
+%files data
+%defattr(-,root,root,-)
+/usr/share/xdg/kidletime.categories
 
 %files dev
 %defattr(-,root,root,-)
