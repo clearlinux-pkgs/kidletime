@@ -5,22 +5,23 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kidletime
-Version  : 5.50.0
-Release  : 5
-URL      : https://download.kde.org/stable/frameworks/5.50/kidletime-5.50.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.50/kidletime-5.50.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.50/kidletime-5.50.0.tar.xz.sig
+Version  : 5.51.0
+Release  : 6
+URL      : https://download.kde.org/stable/frameworks/5.51/kidletime-5.51.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.51/kidletime-5.51.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.51/kidletime-5.51.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
-Requires: kidletime-lib
-Requires: kidletime-license
-Requires: kidletime-data
+Requires: kidletime-data = %{version}-%{release}
+Requires: kidletime-lib = %{version}-%{release}
+Requires: kidletime-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : extra-cmake-modules pkgconfig(x11-xcb)
+BuildRequires : extra-cmake-modules pkgconfig(xcb) xcb-util-cursor-dev xcb-util-image-dev xcb-util-keysyms-dev xcb-util-renderutil-dev xcb-util-wm-dev xcb-util-dev
 BuildRequires : libX11-dev libICE-dev libSM-dev libXau-dev libXcomposite-dev libXcursor-dev libXdamage-dev libXdmcp-dev libXext-dev libXfixes-dev libXft-dev libXi-dev libXinerama-dev libXi-dev libXmu-dev libXpm-dev libXrandr-dev libXrender-dev libXres-dev libXScrnSaver-dev libXt-dev libXtst-dev libXv-dev libXxf86misc-dev libXxf86vm-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
-BuildRequires : qtx11extras-dev
+BuildRequires : qtbase-dev mesa-dev
 
 %description
 # KIdleTime
@@ -41,9 +42,9 @@ data components for the kidletime package.
 %package dev
 Summary: dev components for the kidletime package.
 Group: Development
-Requires: kidletime-lib
-Requires: kidletime-data
-Provides: kidletime-devel
+Requires: kidletime-lib = %{version}-%{release}
+Requires: kidletime-data = %{version}-%{release}
+Provides: kidletime-devel = %{version}-%{release}
 
 %description dev
 dev components for the kidletime package.
@@ -52,8 +53,8 @@ dev components for the kidletime package.
 %package lib
 Summary: lib components for the kidletime package.
 Group: Libraries
-Requires: kidletime-data
-Requires: kidletime-license
+Requires: kidletime-data = %{version}-%{release}
+Requires: kidletime-license = %{version}-%{release}
 
 %description lib
 lib components for the kidletime package.
@@ -68,26 +69,26 @@ license components for the kidletime package.
 
 
 %prep
-%setup -q -n kidletime-5.50.0
+%setup -q -n kidletime-5.51.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536433542
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1539615970
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1536433542
+export SOURCE_DATE_EPOCH=1539615970
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/kidletime
-cp COPYING %{buildroot}/usr/share/doc/kidletime/COPYING
-cp COPYING.LIB %{buildroot}/usr/share/doc/kidletime/COPYING.LIB
+mkdir -p %{buildroot}/usr/share/package-licenses/kidletime
+cp COPYING %{buildroot}/usr/share/package-licenses/kidletime/COPYING
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kidletime/COPYING.LIB
 pushd clr-build
 %make_install
 popd
@@ -116,11 +117,11 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5IdleTime.so.5
-/usr/lib64/libKF5IdleTime.so.5.50.0
+/usr/lib64/libKF5IdleTime.so.5.51.0
 /usr/lib64/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin0.so
 /usr/lib64/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin1.so
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/kidletime/COPYING
-/usr/share/doc/kidletime/COPYING.LIB
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/kidletime/COPYING
+/usr/share/package-licenses/kidletime/COPYING.LIB
