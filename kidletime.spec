@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kidletime
-Version  : 5.51.0
-Release  : 7
-URL      : https://download.kde.org/stable/frameworks/5.51/kidletime-5.51.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.51/kidletime-5.51.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.51/kidletime-5.51.0.tar.xz.sig
+Version  : 5.52.0
+Release  : 8
+URL      : https://download.kde.org/stable/frameworks/5.52/kidletime-5.52.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.52/kidletime-5.52.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.52/kidletime-5.52.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -30,6 +30,14 @@ Reporting of idle time of user and system
 KIdleTime is a singleton reporting information on idle time. It is useful not
 only for finding out about the current idle time of the PC, but also for getting
 notified upon idle time events, such as custom timeouts, or user activity.
+
+%package abi
+Summary: abi components for the kidletime package.
+Group: Default
+
+%description abi
+abi components for the kidletime package.
+
 
 %package data
 Summary: data components for the kidletime package.
@@ -69,14 +77,14 @@ license components for the kidletime package.
 
 
 %prep
-%setup -q -n kidletime-5.51.0
+%setup -q -n kidletime-5.52.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1539637769
+export SOURCE_DATE_EPOCH=1541870134
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -84,7 +92,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1539637769
+export SOURCE_DATE_EPOCH=1541870134
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kidletime
 cp COPYING %{buildroot}/usr/share/package-licenses/kidletime/COPYING
@@ -95,6 +103,10 @@ popd
 
 %files
 %defattr(-,root,root,-)
+
+%files abi
+%defattr(-,root,root,-)
+/usr/share/abi/libKF5IdleTime.so.5.52.0.abi
 
 %files data
 %defattr(-,root,root,-)
@@ -117,7 +129,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5IdleTime.so.5
-/usr/lib64/libKF5IdleTime.so.5.51.0
+/usr/lib64/libKF5IdleTime.so.5.52.0
 /usr/lib64/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin0.so
 /usr/lib64/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin1.so
 
