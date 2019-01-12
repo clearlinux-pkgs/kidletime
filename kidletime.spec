@@ -5,12 +5,12 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kidletime
-Version  : 5.53.0
-Release  : 11
-URL      : https://download.kde.org/stable/frameworks/5.53/kidletime-5.53.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.53/kidletime-5.53.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.53/kidletime-5.53.0.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 5.54.0
+Release  : 12
+URL      : https://download.kde.org/stable/frameworks/5.54/kidletime-5.54.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.54/kidletime-5.54.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.54/kidletime-5.54.0.tar.xz.sig
+Summary  : Monitoring user activity
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: kidletime-data = %{version}-%{release}
@@ -69,14 +69,14 @@ license components for the kidletime package.
 
 
 %prep
-%setup -q -n kidletime-5.53.0
+%setup -q -n kidletime-5.54.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1544487963
+export SOURCE_DATE_EPOCH=1547315718
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -84,7 +84,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1544487963
+export SOURCE_DATE_EPOCH=1547315718
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kidletime
 cp COPYING %{buildroot}/usr/share/package-licenses/kidletime/COPYING
@@ -117,7 +117,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5IdleTime.so.5
-/usr/lib64/libKF5IdleTime.so.5.53.0
+/usr/lib64/libKF5IdleTime.so.5.54.0
 /usr/lib64/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin0.so
 /usr/lib64/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin1.so
 
