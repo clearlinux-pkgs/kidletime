@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kidletime
-Version  : 5.55.0
-Release  : 15
-URL      : https://download.kde.org/stable/frameworks/5.55/kidletime-5.55.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.55/kidletime-5.55.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.55/kidletime-5.55.0.tar.xz.sig
+Version  : 5.56.0
+Release  : 16
+URL      : https://download.kde.org/stable/frameworks/5.56/kidletime-5.56.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.56/kidletime-5.56.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.56/kidletime-5.56.0.tar.xz.sig
 Summary  : Monitoring user activity
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -45,6 +45,7 @@ Group: Development
 Requires: kidletime-lib = %{version}-%{release}
 Requires: kidletime-data = %{version}-%{release}
 Provides: kidletime-devel = %{version}-%{release}
+Requires: kidletime = %{version}-%{release}
 
 %description dev
 dev components for the kidletime package.
@@ -69,22 +70,23 @@ license components for the kidletime package.
 
 
 %prep
-%setup -q -n kidletime-5.55.0
+%setup -q -n kidletime-5.56.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549729052
+export SOURCE_DATE_EPOCH=1552152684
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549729052
+export SOURCE_DATE_EPOCH=1552152684
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kidletime
 cp COPYING %{buildroot}/usr/share/package-licenses/kidletime/COPYING
@@ -117,7 +119,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5IdleTime.so.5
-/usr/lib64/libKF5IdleTime.so.5.55.0
+/usr/lib64/libKF5IdleTime.so.5.56.0
 /usr/lib64/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin0.so
 /usr/lib64/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin1.so
 
