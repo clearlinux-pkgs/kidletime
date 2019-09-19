@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kidletime
-Version  : 5.61.0
-Release  : 23
-URL      : https://download.kde.org/stable/frameworks/5.61/kidletime-5.61.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.61/kidletime-5.61.0.tar.xz
-Source1 : https://download.kde.org/stable/frameworks/5.61/kidletime-5.61.0.tar.xz.sig
+Version  : 5.62.0
+Release  : 24
+URL      : https://download.kde.org/stable/frameworks/5.62/kidletime-5.62.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.62/kidletime-5.62.0.tar.xz
+Source1 : https://download.kde.org/stable/frameworks/5.62/kidletime-5.62.0.tar.xz.sig
 Summary  : Monitoring user activity
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -71,14 +71,14 @@ license components for the kidletime package.
 
 
 %prep
-%setup -q -n kidletime-5.61.0
+%setup -q -n kidletime-5.62.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1565582288
+export SOURCE_DATE_EPOCH=1568866202
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -91,11 +91,11 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1565582288
+export SOURCE_DATE_EPOCH=1568866202
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kidletime
 cp COPYING %{buildroot}/usr/share/package-licenses/kidletime/COPYING
@@ -128,7 +128,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5IdleTime.so.5
-/usr/lib64/libKF5IdleTime.so.5.61.0
+/usr/lib64/libKF5IdleTime.so.5.62.0
 /usr/lib64/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin0.so
 /usr/lib64/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin1.so
 
