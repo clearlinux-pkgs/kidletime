@@ -1,5 +1,5 @@
 PKG_NAME := kidletime
-URL = https://download.kde.org/stable/frameworks/5.64/kidletime-5.64.0.tar.xz
+URL = https://download.kde.org/stable/frameworks/5.65/kidletime-5.65.0.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
