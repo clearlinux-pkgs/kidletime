@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : kidletime
-Version  : 5.71.0
-Release  : 34
-URL      : https://download.kde.org/stable/frameworks/5.71/kidletime-5.71.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.71/kidletime-5.71.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.71/kidletime-5.71.0.tar.xz.sig
+Version  : 5.73.0
+Release  : 35
+URL      : https://download.kde.org/stable/frameworks/5.73/kidletime-5.73.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.73/kidletime-5.73.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.73/kidletime-5.73.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -71,15 +71,15 @@ license components for the kidletime package.
 
 
 %prep
-%setup -q -n kidletime-5.71.0
-cd %{_builddir}/kidletime-5.71.0
+%setup -q -n kidletime-5.73.0
+cd %{_builddir}/kidletime-5.73.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1592244467
+export SOURCE_DATE_EPOCH=1597697733
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -91,15 +91,15 @@ export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1592244467
+export SOURCE_DATE_EPOCH=1597697733
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kidletime
-cp %{_builddir}/kidletime-5.71.0/COPYING %{buildroot}/usr/share/package-licenses/kidletime/7c203dee3a03037da436df03c4b25b659c073976
-cp %{_builddir}/kidletime-5.71.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kidletime/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/kidletime-5.73.0/COPYING %{buildroot}/usr/share/package-licenses/kidletime/7c203dee3a03037da436df03c4b25b659c073976
+cp %{_builddir}/kidletime-5.73.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kidletime/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 pushd clr-build
 %make_install
 popd
@@ -110,6 +110,7 @@ popd
 %files data
 %defattr(-,root,root,-)
 /usr/share/qlogging-categories5/kidletime.categories
+/usr/share/qlogging-categories5/kidletime.renamecategories
 
 %files dev
 %defattr(-,root,root,-)
@@ -128,7 +129,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5IdleTime.so.5
-/usr/lib64/libKF5IdleTime.so.5.71.0
+/usr/lib64/libKF5IdleTime.so.5.73.0
 /usr/lib64/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin0.so
 /usr/lib64/qt5/plugins/kf5/org.kde.kidletime.platforms/KF5IdleTimeXcbPlugin1.so
 
