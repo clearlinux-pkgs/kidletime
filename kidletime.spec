@@ -6,7 +6,7 @@
 #
 Name     : kidletime
 Version  : 5.87.0
-Release  : 47
+Release  : 48
 URL      : https://download.kde.org/stable/frameworks/5.87/kidletime-5.87.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.87/kidletime-5.87.0.tar.xz
 Source1  : https://download.kde.org/stable/frameworks/5.87/kidletime-5.87.0.tar.xz.sig
